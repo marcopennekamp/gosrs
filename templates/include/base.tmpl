@@ -1,0 +1,48 @@
+{{ define "base" }}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ template "title" . }}</title>
+
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="stylesheet" href="/static/css/srs.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+
+  <script src="static/js/wanakana.js"></script>
+  <script src="static/js/util.js"></script>
+  <script src="static/js/csrf.js"></script>
+  <script src="static/js/kanji.js"></script>
+  <script src="static/js/srs/module.js"></script>
+  <script src="static/js/srs/discovery.js"></script>
+  <script src="static/js/srs/review.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // setupCsrfForAjax();
+    });
+  </script>
+
+  {{ template "script" . }}
+</head>
+<body>
+  {{ template "content" . }}
+</body>
+</html>
+{{ end }}
+
+{{ define "title" }}{{ end }}
+{{ define "script" }}{{ end }}
+{{ define "sidebar" }}{{ end }}

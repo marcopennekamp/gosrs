@@ -1,0 +1,21 @@
+{{ define "content" }}
+<h1>Register</h1>
+<form method="post" action="register">
+  <p>
+    <input type="text" name="name" placeholder="username" value="{{.Name.Value}}">
+    <span class="error">{{.Name.Error}}</span>
+  </p>
+
+  <p>
+    <input type="text" name="email" placeholder="email" value="{{.Email.Value}}">
+    <span class="error">{{.Email.Error}}</span>
+  </p>
+
+  <p>
+    <input type="password" name="password" placeholder="password" value="{{.Password.Value}}">
+    <span class="error">{{.Password.Error}}</span>
+  </p>
+
+  <input type="submit" value="Register">
+</form>
+{{ end }}
