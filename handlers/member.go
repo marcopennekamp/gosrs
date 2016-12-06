@@ -53,6 +53,7 @@ func Register(ctx *core.Context, w http.ResponseWriter, r *http.Request, _ httpr
 	name, email, password := r.PostFormValue("name"), r.PostFormValue("email"), r.PostFormValue("password")
 
 	// Check whether the form is valid and display the form with errors if not.
+	// TODO: Validate the form with regular expressions.
 	valid := name != "" && email != "" && password != ""
 	if !valid {
 		fd := NewRegistrationFormData()
@@ -78,6 +79,28 @@ func Register(ctx *core.Context, w http.ResponseWriter, r *http.Request, _ httpr
 		}
 
 		return http.StatusOK, nil
+	}
+
+	// Check if the username or email are already taken.
+	rows, err := ctx.Db.NamedQuery(
+		`SELECT COUNT(*) FROM member WHERE name = :name OR email = :email`,
+		map[string]interface{} {
+			"name": name,
+			"email": email,
+		},
+	)
+	if err != nil {
+		return http.StatusInternalServerError, err
+	}
+
+	for rows.Next() {
+		cols, err := rows.SliceScan()
+		if err != nil {
+			return http.StatusInternalServerError, err
+		}
+		for _, col := range cols {
+			println(col)
+		}
 	}
 
 	w.Write([]byte("POST register"))
